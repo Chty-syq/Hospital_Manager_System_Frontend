@@ -38,7 +38,7 @@ header li a{
     text-decoration: none; /* 去除下划线 */
 
 }
-.doctor{
+.patient{
     position: fixed;
     top: 100px;
     left: 100px;
@@ -46,29 +46,84 @@ header li a{
     height: auto;
 }
 
-.doctor ul{
+.patient ul{
     padding: 0;
-    border: gainsboro solid 1px;
-    border-radius: 5px;
     list-style-type: none;
     width: auto;
     height: auto;
 }
 
-.doctor li{
+.patient li{
     display: flex;
     align-items: center;
     height: 40px;
-    border-bottom: gainsboro solid 1px;
+    border: gainsboro solid 1px;
+    cursor: pointer;
+    background: #f1f1f1;
 }
 
-.doctor li p{
+.patient li p{
     margin-left: 30px;
 }
 
 .content{
     position: fixed;
-    background: black;
     top: 115px;
     left: 400px;
 }
+
+.book-search, .case-search{
+    display: flex;
+    background: #f1f1f1;
+    width: 800px;
+    height: 50px;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.search-input{
+    display: flex;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.search-button{
+    display: flex;
+    height: 26px;
+    margin-left: 5px;
+}
+
+.book-search-result, .case-search-result{
+    background: #f1f1f1;
+    width: 800px;
+    height: 500px;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    align: center;
+}
+
+.result-table thead th{
+    background-color: #CCE8EB;
+}
+
+.result-table tr:nth-child(even)
+{
+    background: #F5FAFA;
+}
+
+.result-table{
+    border: gainsboro solid 1px;
+}
+
+.result-table th,td{
+    border: gainsboro solid 1px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+}
+

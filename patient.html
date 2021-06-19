@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>现代医疗健康系统</title>
+    <link rel="stylesheet" href="css/patient.css" type="text/css">
+    <script src="js/patient.js"></script>
+</head>
+<body>
+<header>
+    <p>欢迎来到现代医疗健康管理系统</p>
+    <ul>
+        <li><a href="login.html" id="header-login">登陆</a></li>
+        <li><a href="register.html" id="header-register">注册</a></li>
+        <li><a href="help.html" id="header-help">帮助</a></li>
+    </ul>
+</header>
+<div class="patient">
+    <ul class="patient-list" id="patient-list">
+        <li id="book-option"><p>预约看病</p></li>
+        <li id="case-option"><p>查看病例</p></li>
+        <li id="setting-option"><p>设置</p></li>
+    </ul>
+</div>
+<div class="content" id="content">
+    <div id="book-region">
+        <div class="book-search">
+            <input type="text" id="book-search-input" class="search-input" placeholder="请输入要搜索的科室">
+            <button id="book-search-button" class="search-button">搜索</button>
+        </div>
+        <div class="book-search-result">
+            <table id="book-result-table" class="result-table">
+                <thead>
+                    <tr>
+                        <th style="width: 150px">医生姓名</th>
+                        <th style="width: 100px">科室</th>
+                        <th style="width: 150px">电话</th>
+                        <th style="width: 200px">身份证号</th>
+                        <th style="width: 100px">操作</th>
+                    <tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div id="case-region">
+        <div class="case-search">
+            <input type="text" id="case-search-input-name" class="search-input" placeholder="请输入医生姓名">
+            <button id="case-search-button-name" class="search-button">根据医生搜索</button>
+            <input type="date" id="case-search-input-date" class="search-input">
+            <button id="case-search-button-date" class="search-button">根据日期搜索</button>
+        </div>
+        <div class="case-search-result">
+            <table id="case-result-table" class="result-table">
+                <thead>
+                <tr>
+                    <th style="width: 200px">日期</th>
+                    <th style="width: 150px">医生姓名</th>
+                    <th style="width: 100px">科室</th>
+                    <th style="width: 150px">病情描述</th>
+                    <th style="width: 100px">操作</th>
+                <tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div id="setting-region">
+
+    </div>
+</div>
+</body>
+</html>

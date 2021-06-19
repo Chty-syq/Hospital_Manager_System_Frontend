@@ -51,8 +51,22 @@ function processLogin() {
 }
 
 function processData(data) {
-    if(data["code"]==200){//登陆成功
-
+    if(data["msg"]=="success"){//登陆成功
+        alert("登陆成功！")
+        user = data["data"]["user"]
+        localStorage.setItem("username", user["accountName"])
+        localStorage.setItem("userID", user["id"])
+        switch (user["roleId"]) {
+            case "2":
+                window.location.href = "patient.html";
+                break;
+            case "3":
+                window.location.href = "doctor.html";
+                break;
+        }
+    }
+    else{
+        alert("登陆失败！")
     }
 }
 

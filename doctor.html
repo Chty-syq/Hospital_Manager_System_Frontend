@@ -3,25 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>现代医疗健康系统</title>
-    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <link rel="stylesheet" href="css/doctor.css" type="text/css">
+    <script src="js/doctor.js"></script>
 </head>
 <body>
 <header>
     <p>欢迎来到现代医疗健康管理系统</p>
     <ul>
-        <li><a href="#">登陆</a></li>
-        <li><a href="#">注册</a></li>
-        <li><a href="#">帮助</a></li>
+        <li><a href="login.html" id="header-login">登陆</a></li>
+        <li><a href="register.html" id="header-register">注册</a></li>
+        <li><a href="help.html" id="header-help">帮助</a></li>
     </ul>
 </header>
 <div class="doctor">
-    <ul>
-        <li><p>已预约病人</p></li>
-        <li><p>设置</p></li>
+    <ul class="doctor-list" id="doctor-list">
+        <li id="patient-option"><p>病人预约列表</p></li>
+        <li id="create-case-option"><p>创建病例</p></li>
+        <li id="create-pres-option"><p>创建处方</p></li>
+        <li id="find-case-option"><p>查看病例</p></li>
+        <li id="find-pres-option"><p>查看处方</p></li>
+        <li id="setting-option"><p>设置</p></li>
     </ul>
 </div>
-<div class="content">
+<div class="content" id="content">
+    <div id="patient-region">
+        <div class="patient-operation">
+            <button class="operation-button" id="accept-operation-button">接受预约</button>
+            <button class="operation-button" id="delay-operation-button">推迟预约</button>
+            <button class="operation-button" id="refresh-operation-button">刷新列表</button>
+        </div>
+        <div class="patient-list">
+            <table id="patient-list-table" class="result-table">
+                <thead>
+                <tr>
+                    <th style="width: 200px">病人用户名</th>
+                    <th style="width: 150px">电话</th>
+                    <th style="width: 200px">身份证号</th>
+                    <th style="width: 150px">真实姓名</th>
+                <tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
 
+    <div id="create-case-region">
+        <div class="patient-info">
+            <span style="margin: 20px;">病人姓名：</span>
+            <span id="patient-info-name-case"></span>
+        </div>
+        <div class="case-description">
+            <p style="margin: 20px 20px 0px 20px;">病情描述</p>
+            <textarea id="case-description-input" class="case-description-input" placeholder="请输入病情描述"></textarea>
+            <button id="case-description-button" class="case-description-button">创建病例</button>
+        </div>
+    </div>
+
+    <div id="create-pres-region">
+        <div class="patient-info">
+            <span style="margin: 20px;">病人姓名：</span>
+            <span id="patient-info-name-pres"></span>
+        </div>
+        <div class="pres-description">
+            <p style="margin: 20px 20px 0px 20px;">病情描述</p>
+            <textarea id="pres-description-input" class="pres-description-input" placeholder="请输入处方"></textarea>
+            <button id="pres-description-button" class="pres-description-button">创建处方</button>
+        </div>
+    </div>
+
+    <div id="find-case-region">
+        <div class="case-list">
+            <table id="case-list-table" class="result-table">
+                <thead>
+                <tr>
+                    <th style="width: 200px">病人用户名</th>
+                    <th style="width: 150px">电话</th>
+                    <th style="width: 200px">身份证号</th>
+                    <th style="width: 150px">真实姓名</th>
+                <tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="find-pres-region">
+        <div class="pres-list">
+            <table id="pres-list-table" class="result-table">
+                <thead>
+                <tr>
+                    <th style="width: 200px">病人用户名</th>
+                    <th style="width: 150px">电话</th>
+                    <th style="width: 200px">身份证号</th>
+                    <th style="width: 150px">真实姓名</th>
+                <tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="setting-region">
+
+    </div>
 </div>
 </body>
 </html>

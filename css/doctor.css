@@ -1,0 +1,143 @@
+header {
+    position: fixed;
+    height: auto;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: green;
+    margin-left: 0;
+    margin-bottom: 5px;
+}
+header > p{
+    margin-left: 10px;
+    font-size: 20px;
+    color: white;
+}
+header > ul{
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    width: 200px;
+    list-style-type: none;
+    white-space:nowrap;
+    overflow: hidden;
+    padding: 0;
+}
+header li {
+    float: left; /* 使li内容横向浮动，即横向排列  */
+    margin-right:2%;  /* 两个li之间的距离*/
+    position: relative;
+}
+header li a{
+    /* 设置链接内容显示的格式*/
+    display: block; /* 把链接显示为块元素可使整个链接区域可点击 */
+    color:white;
+    text-align: center;
+    padding: 3px;
+    overflow: hidden;
+    text-decoration: none; /* 去除下划线 */
+
+}
+.doctor{
+    position: fixed;
+    top: 100px;
+    left: 100px;
+    width: 250px;
+    height: auto;
+}
+
+.doctor ul{
+    padding: 0;
+    list-style-type: none;
+    width: auto;
+    height: auto;
+}
+
+.doctor li{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border: gainsboro solid 1px;
+    cursor: pointer;
+    background: #f1f1f1;
+}
+
+.doctor li p{
+    margin-left: 30px;
+}
+
+.content{
+    position: fixed;
+    top: 115px;
+    left: 400px;
+}
+
+.patient-operation, .patient-info{
+    display: flex;
+    background: #f1f1f1;
+    width: 800px;
+    height: 50px;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.operation-button{
+    display: flex;
+    height: 26px;
+    margin-left: 10px;
+}
+
+#refresh-operation-button{
+    position: absolute;
+    right: 10px;
+    float: right;
+}
+
+.patient-list, .case-description, .pres-description{
+    background: #f1f1f1;
+    width: 800px;
+    height: 500px;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+
+.case-description, .pres-description{
+    overflow-y: hidden;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    align: center;
+}
+
+.result-table thead th{
+    background-color: #CCE8EB;
+}
+
+.result-table tr:nth-child(even)
+{
+    background: #F5FAFA;
+}
+
+.result-table{
+    border: gainsboro solid 1px;
+}
+
+.result-table th,td{
+    border: gainsboro solid 1px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+}
+
+.case-description-input, .pres-description-input{
+    margin: 20px;
+    width: 92%;
+    height: 72%;
+}
+
+.case-description-button, .pres-description-button{
+    margin: 20px;
+    margin-top: 0px;
+}

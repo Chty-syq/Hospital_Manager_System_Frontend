@@ -99,4 +99,7 @@ function processRegist3() {
 
 function processData(data) {
     console.log(data)
+    if(data["msg"]=="success"){
+        alert("注册成功!")
+    }
 }
