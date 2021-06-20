@@ -72,7 +72,7 @@ header li a{
     left: 400px;
 }
 
-.book-search, .case-search{
+.region-1{
     display: flex;
     background: #f1f1f1;
     width: 800px;
@@ -93,7 +93,7 @@ header li a{
     margin-left: 5px;
 }
 
-.book-search-result, .case-search-result{
+.region-2{
     background: #f1f1f1;
     width: 800px;
     height: 500px;

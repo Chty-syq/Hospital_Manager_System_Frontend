@@ -19,16 +19,17 @@
     <ul class="patient-list" id="patient-list">
         <li id="book-option"><p>预约看病</p></li>
         <li id="case-option"><p>查看病例</p></li>
+        <li id="pres-option"><p>查看处方</p></li>
         <li id="setting-option"><p>设置</p></li>
     </ul>
 </div>
 <div class="content" id="content">
     <div id="book-region">
-        <div class="book-search">
+        <div class="region-1">
             <input type="text" id="book-search-input" class="search-input" placeholder="请输入要搜索的科室">
             <button id="book-search-button" class="search-button">搜索</button>
         </div>
-        <div class="book-search-result">
+        <div class="region-2">
             <table id="book-result-table" class="result-table">
                 <thead>
                     <tr>
@@ -43,21 +44,41 @@
             </table>
         </div>
     </div>
+
     <div id="case-region">
-        <div class="case-search">
+        <div class="region-1">
             <input type="text" id="case-search-input-name" class="search-input" placeholder="请输入医生姓名">
             <button id="case-search-button-name" class="search-button">根据医生搜索</button>
             <input type="date" id="case-search-input-date" class="search-input">
             <button id="case-search-button-date" class="search-button">根据日期搜索</button>
+            <button id="case-search-button-all" class="search-button" style="margin-left: 20px;">查看全部</button>
         </div>
-        <div class="case-search-result">
+        <div class="region-2">
             <table id="case-result-table" class="result-table">
                 <thead>
                 <tr>
                     <th style="width: 200px">日期</th>
                     <th style="width: 150px">医生姓名</th>
                     <th style="width: 100px">科室</th>
-                    <th style="width: 150px">病情描述</th>
+                    <th style="width: 250px">病情描述</th>
+                <tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="pres-region">
+        <div class="region-1">
+            <button id="pres-search-button-all" class="search-button" style="margin-left: 20px;">查看全部</button>
+        </div>
+        <div class="region-2">
+            <table id="pres-result-table" class="result-table">
+                <thead>
+                <tr>
+                    <th style="width: 200px">日期</th>
+                    <th style="width: 150px">医生姓名</th>
+                    <th style="width: 250px">处方内容</th>
                     <th style="width: 100px">操作</th>
                 <tr>
                 </thead>
@@ -65,6 +86,7 @@
             </table>
         </div>
     </div>
+
     <div id="setting-region">
 
     </div>

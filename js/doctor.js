@@ -24,6 +24,10 @@ window.onload = ()=>{
     btnCaseSubmit.addEventListener("click",()=>processCaseSubmit())
     let btnPresSubmit = document.getElementById("pres-description-button")
     btnPresSubmit.addEventListener("click",()=>processPresSubmit())
+    let btnCaseRefresh = document.getElementById("find-case-refresh-button")
+    btnCaseRefresh.addEventListener("click",()=>processCaseRefresh())
+    let btnPresRefresh = document.getElementById("find-pres-refresh-button")
+    btnPresRefresh.addEventListener("click",()=>processPresRefresh())
 
     processOption("patient");
     let optionList = getOptionList();
@@ -126,10 +130,10 @@ function processCaseSubmit() {
     fetch(root + "/doctor/createCase",{
         method: "POST",
         body: JSON.stringify({
-            doctor:{
+            doctorDto:{
                 id: localStorage.getItem("userID")
             },
-            patient:{
+            patientDto:{
                 id: localStorage.getItem("patientID")
             },
             description: description
@@ -154,10 +158,10 @@ function processPresSubmit() {
     fetch(root + "/doctor/createPrescription",{
         method: "POST",
         body: JSON.stringify({
-            doctor:{
+            doctorDto:{
                 id: localStorage.getItem("userID")
             },
-            patient:{
+            patientDto:{
                 id: localStorage.getItem("patientID")
             },
             description: description
@@ -171,6 +175,198 @@ function processPresSubmit() {
             alert(data["code"]==200 ? "创建处方成功!" : "创建失败!")
         })
         .catch(err=>console.log(err))
+}
+
+function processCaseRefresh(){
+    fetch(root + "/doctor/checkCase",{
+        method: "POST",
+        body: JSON.stringify({
+            doctorDto:{
+                id: localStorage.getItem("userID")
+            },
+            patientDto:{
+                id: localStorage.getItem("patientID")
+            }
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })  .then(res=>res.json())
+        .then(data=> processCaseRefreshData(data))
+        .catch(err=>console.log(err))
+}
+
+function processCaseRefreshData(data) {
+    var caseList = data["data"]["info"];
+    let resultTableBody = document.getElementById("case-list-table").tBodies[0]
+    resultTableBody.innerHTML = ""
+    for(let i=0;i<caseList.length;++i){
+        let tr = document.createElement("tr")
+        let td1 = document.createElement("td")
+        td1.innerText = caseList[i]["date"]
+        let td2 = document.createElement("td")
+        td2.innerText = caseList[i]["doctorDto"]["realName"]
+        let td3 = document.createElement("td")
+        td3.innerText = caseList[i]["description"]
+        let td4 = document.createElement("td")
+        if(caseList[i]["doctorDto"]["id"] == localStorage.getItem("userID")){
+            let tButton = document.createElement("button")
+            tButton.addEventListener("click", ()=>processModifyCase(i, caseList[i]["id"]))
+            tButton.innerText = "修改"
+            td4.appendChild(tButton)
+        }
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        tr.appendChild(td4)
+        resultTableBody.appendChild(tr)
+    }
+}
+
+function processModifyCase(caseNum, caseID) {
+    let tr = document.querySelectorAll("#case-list-table > tbody > tr")[caseNum]
+
+    let td3 = tr.children[2];
+    let textArea = document.createElement("textarea")
+    textArea.style.width = "230px";
+    textArea.style.height = "100px";
+    textArea.innerText = td3.innerText
+    td3.innerText = null;
+    td3.appendChild(textArea);
+
+    let td4 = tr.children[3];
+    let tButton = document.createElement("button")
+    tButton.innerText = "保存"
+    tButton.addEventListener("click",()=>processSaveCase(caseNum, caseID))
+    td4.innerHTML = null;
+    td4.appendChild(tButton);
+}
+
+function processSaveCase(caseNum, caseID){
+    let tr = document.querySelectorAll("#case-list-table > tbody > tr")[caseNum];
+
+    let td3 = tr.children[2];
+    fetch(root + "/doctor/updateCase",{
+        method: "POST",
+        body: JSON.stringify({
+            id: caseID,
+            description: td3.children[0].value
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })  .then(res=>res.json())
+        .then(data=> {
+            alert(data["code"] == 200 ? "保存成功！" : "保存失败！")
+            processCaseRefresh()
+        })
+        .catch(err=>console.log(err))
+
+    let td4 = tr.children[3]
+    let tButton = document.createElement("button")
+    tButton.innerText = "修改"
+    tButton.addEventListener("click",()=>processModifyCase(caseNum, caseID))
+    td4.innerHTML = null;
+    td4.appendChild(tButton);
+}
+
+function processPresRefresh() {
+    fetch(root + "/doctor/checkPrescription",{
+        method: "POST",
+        body: JSON.stringify({
+            doctorDto:{
+                id: localStorage.getItem("userID")
+            },
+            patientDto:{
+                id: localStorage.getItem("patientID")
+            }
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })  .then(res=>res.json())
+        .then(data=> processPresRefreshData(data))
+        .catch(err=>console.log(err))
+}
+
+function processPresRefreshData(data) {
+    var presList = data["data"]["list"];
+    let resultTableBody = document.getElementById("pres-list-table").tBodies[0]
+    resultTableBody.innerHTML = ""
+    for(let i=0;i<presList.length;++i){
+        let tr = document.createElement("tr")
+        let td1 = document.createElement("td")
+        td1.innerText = presList[i]["date"]
+        let td2 = document.createElement("td")
+        td2.innerText = presList[i]["doctorDto"]["realName"]
+        let td3 = document.createElement("td")
+        td3.innerText = presList[i]["description"]
+        let td4 = document.createElement("td")
+        if(presList[i]["doctorDto"]["id"] == localStorage.getItem("userID")){
+            let tButton = document.createElement("button")
+            tButton.innerText = "修改"
+            tButton.addEventListener("click", ()=>processModifyPres(i, presList[i]["id"]))
+            td4.appendChild(tButton)
+        }
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        tr.appendChild(td4)
+        resultTableBody.appendChild(tr)
+    }
+}
+
+function processModifyPres(presNum, presID) {
+    let tr = document.querySelectorAll("#pres-list-table > tbody > tr")[presNum]
+
+    let td3 = tr.children[2];
+    let textArea = document.createElement("textarea")
+    textArea.style.width = "230px";
+    textArea.style.height = "100px";
+    textArea.innerText = td3.innerText
+    td3.innerText = null;
+    td3.appendChild(textArea);
+
+    let td4 = tr.children[3];
+    let tButton = document.createElement("button")
+    tButton.innerText = "保存"
+    tButton.addEventListener("click",()=>processSavePres(presNum, presID))
+    td4.innerHTML = null;
+    td4.appendChild(tButton);
+}
+
+function processSavePres(presNum, presID){
+    let tr = document.querySelectorAll("#pres-list-table > tbody > tr")[presNum];
+
+    let td3 = tr.children[2];
+    fetch(root + "/doctor/updatePrescription",{
+        method: "POST",
+        body: JSON.stringify({
+            id: presID,
+            description: td3.children[0].value,
+            doctorDto: {
+                id: localStorage.getItem("userID")
+            },
+            patientDto: {
+                id: localStorage.getItem("patientID")
+            }
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })  .then(res=>res.json())
+        .then(data=> {
+            alert(data["code"] == 200 ? "保存成功！" : "保存失败！")
+            processPresRefresh()
+        })
+        .catch(err=>console.log(err))
+
+    let td4 = tr.children[3]
+    let tButton = document.createElement("button")
+    tButton.innerText = "修改"
+    tButton.addEventListener("click",()=>processModifyPres(presNum, presID))
+    td4.innerHTML = null;
+    td4.appendChild(tButton);
 }
 
 function processOption(optionName) {
@@ -210,6 +406,14 @@ function processOption(optionName) {
             return;
         }
         document.getElementById("patient-info-name-pres").innerText = localStorage.getItem("patientName")
+    }
+    else if(optionName == "find-case"){
+        document.getElementById("patient-info-name-find-case").innerText = localStorage.getItem("patientName")
+        processCaseRefresh()
+    }
+    else if(optionName == "find-pres"){
+        document.getElementById("patient-info-name-find-pres").innerText = localStorage.getItem("patientName")
+        processPresRefresh()
     }
 }
 

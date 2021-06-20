@@ -27,12 +27,12 @@
 </div>
 <div class="content" id="content">
     <div id="patient-region">
-        <div class="patient-operation">
+        <div class="region-1">
             <button class="operation-button" id="accept-operation-button">接受预约</button>
             <button class="operation-button" id="delay-operation-button">推迟预约</button>
             <button class="operation-button" id="refresh-operation-button">刷新列表</button>
         </div>
-        <div class="patient-list">
+        <div class="region-2">
             <table id="patient-list-table" class="result-table">
                 <thead>
                 <tr>
@@ -48,11 +48,11 @@
     </div>
 
     <div id="create-case-region">
-        <div class="patient-info">
+        <div class="region-1">
             <span style="margin: 20px;">病人姓名：</span>
             <span id="patient-info-name-case"></span>
         </div>
-        <div class="case-description">
+        <div class="region-2">
             <p style="margin: 20px 20px 0px 20px;">病情描述</p>
             <textarea id="case-description-input" class="case-description-input" placeholder="请输入病情描述"></textarea>
             <button id="case-description-button" class="case-description-button">创建病例</button>
@@ -60,11 +60,11 @@
     </div>
 
     <div id="create-pres-region">
-        <div class="patient-info">
+        <div class="region-1">
             <span style="margin: 20px;">病人姓名：</span>
             <span id="patient-info-name-pres"></span>
         </div>
-        <div class="pres-description">
+        <div class="region-2">
             <p style="margin: 20px 20px 0px 20px;">病情描述</p>
             <textarea id="pres-description-input" class="pres-description-input" placeholder="请输入处方"></textarea>
             <button id="pres-description-button" class="pres-description-button">创建处方</button>
@@ -72,14 +72,19 @@
     </div>
 
     <div id="find-case-region">
-        <div class="case-list">
+        <div class="region-1">
+            <span style="margin: 20px;">病人姓名：</span>
+            <span id="patient-info-name-find-case"></span>
+            <button class="operation-button" id="find-case-refresh-button">刷新列表</button>
+        </div>
+        <div class="region-2">
             <table id="case-list-table" class="result-table">
                 <thead>
                 <tr>
-                    <th style="width: 200px">病人用户名</th>
-                    <th style="width: 150px">电话</th>
-                    <th style="width: 200px">身份证号</th>
-                    <th style="width: 150px">真实姓名</th>
+                    <th style="width: 200px">日期</th>
+                    <th style="width: 150px">看诊医生</th>
+                    <th style="width: 250px">描述</th>
+                    <th style="width: 100px">操作</th>
                 <tr>
                 </thead>
                 <tbody></tbody>
@@ -88,14 +93,19 @@
     </div>
 
     <div id="find-pres-region">
-        <div class="pres-list">
+        <div class="region-1">
+            <span style="margin: 20px;">病人姓名：</span>
+            <span id="patient-info-name-find-pres"></span>
+            <button class="operation-button" id="find-pres-refresh-button">刷新列表</button>
+        </div>
+        <div class="region-2">
             <table id="pres-list-table" class="result-table">
                 <thead>
                 <tr>
-                    <th style="width: 200px">病人用户名</th>
-                    <th style="width: 150px">电话</th>
-                    <th style="width: 200px">身份证号</th>
-                    <th style="width: 150px">真实姓名</th>
+                    <th style="width: 200px">日期</th>
+                    <th style="width: 150px">看诊医生</th>
+                    <th style="width: 250px">描述</th>
+                    <th style="width: 100px">操作</th>
                 <tr>
                 </thead>
                 <tbody></tbody>

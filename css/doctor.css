@@ -72,7 +72,7 @@ header li a{
     left: 400px;
 }
 
-.patient-operation, .patient-info{
+.region-1{
     display: flex;
     background: #f1f1f1;
     width: 800px;
@@ -87,23 +87,19 @@ header li a{
     margin-left: 10px;
 }
 
-#refresh-operation-button{
+#refresh-operation-button, #find-case-refresh-button, #find-pres-refresh-button{
     position: absolute;
     right: 10px;
     float: right;
 }
 
-.patient-list, .case-description, .pres-description{
+.region-2{
     background: #f1f1f1;
     width: 800px;
     height: 500px;
     margin-top: 20px;
     border-radius: 5px;
     overflow-y: scroll;
-}
-
-.case-description, .pres-description{
-    overflow-y: hidden;
 }
 
 table{

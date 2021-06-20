@@ -5,6 +5,8 @@ window.onload = ()=>{
     bookOption.addEventListener("click",()=>processOption("book"))
     let caseOption = document.getElementById("case-option")
     caseOption.addEventListener("click",()=>processOption("case"))
+    let presOption = document.getElementById("pres-option")
+    presOption.addEventListener("click",()=>processOption("pres"))
     let settingOption = document.getElementById("setting-option")
     settingOption.addEventListener("click",()=>processOption("setting"))
 
@@ -14,6 +16,10 @@ window.onload = ()=>{
     btnCaseSearchName.addEventListener("click",()=>processCaseSearchByName())
     let btnCaseSearchDate = document.getElementById("case-search-button-date")
     btnCaseSearchDate.addEventListener("click",()=>processCaseSearchByDate())
+    let btnCaseSearchAll = document.getElementById("case-search-button-all")
+    btnCaseSearchAll.addEventListener("click",()=>processCaseSearchAll())
+    let btnPresSearchAll = document.getElementById("pres-search-button-all")
+    btnPresSearchAll.addEventListener("click",()=>processPresSearchAll())
 
     processOption("book")
     let optionList = getOptionList();
@@ -129,8 +135,108 @@ function processCaseSearchByDate(){
         .catch(err=>console.log(err))
 }
 
+function processCaseSearchAll(){
+    fetch(root + "/patient/getAllCase",{
+        method: "POST",
+        body: JSON.stringify({
+            patientDto: {
+                id: localStorage.getItem("userID")
+            }
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })  .then(res=>res.json())
+        .then(data=>processCaseSearchData(data))
+        .catch(err=>console.log(err))
+}
+
 function processCaseSearchData(data) {
-    console.log(data)
+    let resultTableBody = document.getElementById("case-result-table").tBodies[0]
+    resultTableBody.innerHTML = null;
+    let searchList = data["data"]["list"]
+    for(let i=0;i<searchList.length;++i){
+        let tr = document.createElement("tr")
+        let td1 = document.createElement("td")
+        td1.innerText = searchList[i]["date"]
+        let td2 = document.createElement("td")
+        td2.innerText = searchList[i]["doctorDto"]["realName"]
+        let td3 = document.createElement("td")
+        td3.innerText = searchList[i]["department"]
+        let td4 = document.createElement("td")
+        td4.innerText = searchList[i]["description"]
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        tr.appendChild(td4)
+        resultTableBody.appendChild(tr)
+    }
+}
+
+function processPresSearchAll(){
+    fetch(root + "/patient/checkPrescription",{
+        method: "POST",
+        body: JSON.stringify({
+            patientDto: {
+                id: localStorage.getItem("userID")
+            }
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })  .then(res=>res.json())
+        .then(data=>processPresSearchData(data))
+        .catch(err=>console.log(err))
+}
+
+function processPresSearchData(data) {
+    let resultTableBody = document.getElementById("pres-result-table").tBodies[0]
+    resultTableBody.innerHTML = null;
+    let searchList = data["data"]["list"]
+    for(let i=0;i<searchList.length;++i){
+        let tr = document.createElement("tr")
+        let td1 = document.createElement("td")
+        td1.innerText = searchList[i]["date"]
+        let td2 = document.createElement("td")
+        td2.innerText = searchList[i]["doctorDto"]["realName"]
+        let td3 = document.createElement("td")
+        td3.innerText = searchList[i]["description"]
+        let td4 = document.createElement("td")
+        let tButton = document.createElement("button")
+        tButton.innerText = "支付"
+        tButton.addEventListener("click", ()=>processPresPay(
+            searchList[i]["id"], searchList[i]["description"], searchList[i]["doctorDto"]["id"]
+        ));
+        td4.appendChild(tButton)
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        tr.appendChild(td4)
+        resultTableBody.appendChild(tr)
+    }
+}
+
+function processPresPay(presID, presDes, presDoctorID) {
+    fetch(root + "/patient/pay",{
+        method: "POST",
+        body: JSON.stringify({
+            id: presID,
+            patientDto: {
+                id: localStorage.getItem("userID")
+            },
+            doctorDto: {
+                id: presDoctorID
+            },
+            description: presDes
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })  .then(res=>res.json())
+        .then(data=> {
+            alert(data["code"] == 200 ? "支付成功！" : "支付失败！")
+        })
+        .catch(err=>console.log(err))
 }
 
 function processOption(optionName) {
