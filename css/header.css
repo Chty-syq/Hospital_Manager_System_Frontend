@@ -1,0 +1,54 @@
+header {
+    position: fixed;
+    height: auto;
+    min-height: 60px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: green;
+    margin-left: 0;
+    margin-bottom: 5px;
+}
+#header-flag{
+    position: fixed;
+    top: 15px;
+    left: 2%;
+    font-size: 18px;
+}
+.header-href{
+    color: white;
+    text-decoration: none;
+    display: block; /* 把链接显示为块元素可使整个链接区域可点击 */
+}
+.header-href:visited{
+    color: white;
+}
+header ul{
+    position: fixed;
+    top: 5px;
+    right: 2%;
+    width: 200px;
+    list-style-type: none;
+    white-space:nowrap;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+}
+header li {
+    float: left; /* 使li内容横向浮动，即横向排列  */
+    margin-right:2%;  /* 两个li之间的距离*/
+    position: relative;
+}
+header li a{
+    text-align: center;
+    padding: 4px;
+    overflow: hidden;
+    font-size: 14px;
+}
+header li a:hover{
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+}
+

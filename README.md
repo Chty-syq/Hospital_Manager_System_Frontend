@@ -2,4 +2,4 @@
 
 Page URL:
 
-https://chty-syq.github.io/Hospital_Manager_System_Frontend/login.html
+https://chty-syq.github.io/Hospital_Manager_System_Frontend/index.html

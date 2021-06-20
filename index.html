@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>现代医疗健康系统</title>
+    <link rel="icon" type="image/x-ico" href="./rsrc/logo.png">
+    <link rel="stylesheet" href="css/header.css" type="text/css">
+  </head>
+  <style>
+    html,body{
+        height: 100%;
+    }
+    #logo-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .circle{
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 1px;
+        border-color: yellowgreen;
+        box-shadow: 0px 0px 1px 1px inset yellowgreen;
+        opacity: 0.3;
+        background-color: rgba(0,0,0,0);
+        transform: translate(-50%, -50%);
+    }
+    /* animations */
+    @keyframes heart-beat{
+        0% {transform:scale(1);}
+        60% {transform:scale(0.8);}
+        100% {transform:scale(1);}
+    }
+    @keyframes wave-1-out{
+        0% {transform:scale(1);}
+        100% {transform:scale(120);}
+    }
+    
+    #logo-image{
+        animation-name: heart-beat;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+    #wave-1{
+        z-index: -1;
+        position: absolute;
+        left:50%;
+        top: 50%;
+        height: 1%;
+        width: 1%;
+        animation-name: wave-1-out;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+  </style>
+  <body>
+     <header>
+        <a href="index.html" id="header-flag" class="header-href">欢迎来到现代医疗健康管理系统</a>
+        <ul>
+            <li><a href="html/login.html" id="header-login"  class="header-href">登录</a></li>
+            <li><a href="html/register.html" id="header-register"  class="header-href">注册</a></li>
+            <li><a href="man/help-register.html" id="header-help"  class="header-href">帮助</a></li>
+        </ul>
+     </header>
+     <div id="logo-container">
+       <img src="rsrc/logo.png" id="logo-image" alt="Love Life"/>
+     </div>
+     <div class="circle" id="wave-1"></div>
+  </body>
+</html>
