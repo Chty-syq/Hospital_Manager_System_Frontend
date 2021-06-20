@@ -57,11 +57,17 @@ function processData(data) {
         localStorage.setItem("username", user["accountName"])
         localStorage.setItem("userID", user["id"])
         switch (user["roleId"]) {
+            case "1":
+                window.location.href = "admin.html";
+                break;
             case "2":
                 window.location.href = "patient.html";
                 break;
             case "3":
                 window.location.href = "doctor.html";
+                break;
+            case "4":
+                window.location.href = "chemist.html";
                 break;
         }
     }

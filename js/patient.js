@@ -220,12 +220,12 @@ function processPresPay(presID, presDes, presDoctorID) {
     fetch(root + "/patient/pay",{
         method: "POST",
         body: JSON.stringify({
-            id: presID,
+            id: presID.toString(),
             patientDto: {
                 id: localStorage.getItem("userID")
             },
             doctorDto: {
-                id: presDoctorID
+                id: presDoctorID.toString()
             },
             description: presDes
         }),
@@ -234,6 +234,7 @@ function processPresPay(presID, presDes, presDoctorID) {
         }
     })  .then(res=>res.json())
         .then(data=> {
+            console.log(data)
             alert(data["code"] == 200 ? "支付成功！" : "支付失败！")
         })
         .catch(err=>console.log(err))

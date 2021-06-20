@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>现代医疗健康系统</title>
+    <link rel="stylesheet" href="css/chemist.css" type="text/css">
+    <script src="js/chemist.js"></script>
+</head>
+<body>
+<header>
+    <p>欢迎来到现代医疗健康管理系统</p>
+    <ul>
+        <li><a href="login.html" id="header-login">登陆</a></li>
+        <li><a href="register.html" id="header-register">注册</a></li>
+        <li><a href="help.html" id="header-help">帮助</a></li>
+    </ul>
+</header>
+<div class="chemist">
+    <ul class="chemist-list" id="chemist-list">
+        <li id="pres-option"><p>查看处方</p></li>
+        <li id="setting-option"><p>设置</p></li>
+    </ul>
+</div>
+<div class="content" id="content">
+    <div id="pres-region">
+        <div class="region-1">
+            <button id="pres-refresh-button" class="search-button">刷新列表</button>
+        </div>
+        <div class="region-2">
+            <table id="pres-result-table" class="result-table">
+                <thead>
+                <tr>
+                    <th style="width: 150px">病人姓名</th>
+                    <th style="width: 200px">身份证号</th>
+                    <th style="width: 250px">处方描述</th>
+                    <th style="width: 100px">操作</th>
+                <tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="setting-region">
+
+    </div>
+</div>
+</body>
+</html>

@@ -93,13 +93,8 @@ function processRegist3() {
             'Content-Type': 'application/json'
         }
     })  .then(res=>res.json())
-        .then(data=>processData(data))
+        .then(data=> {
+            alert(data["code"] == 200 ? "注册成功" : "注册失败")
+        })
         .catch(err=>console.log(err))
-}
-
-function processData(data) {
-    console.log(data)
-    if(data["msg"]=="success"){
-        alert("注册成功!")
-    }
 }
