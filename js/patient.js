@@ -203,10 +203,16 @@ function processPresSearchData(data) {
         td3.innerText = searchList[i]["description"]
         let td4 = document.createElement("td")
         let tButton = document.createElement("button")
-        tButton.innerText = "支付"
-        tButton.addEventListener("click", ()=>processPresPay(
-            searchList[i]["id"], searchList[i]["description"], searchList[i]["doctorDto"]["id"]
-        ));
+        if(searchList[i]["paid"] == 1){
+            tButton.innerText = "已支付"
+            tButton.disabled = "disabled"
+        }
+        else{
+            tButton.innerText = "支付"
+            tButton.addEventListener("click", ()=>processPresPay(
+                searchList[i]["id"], searchList[i]["description"], searchList[i]["doctorDto"]["id"]
+            ));
+        }
         td4.appendChild(tButton)
         tr.appendChild(td1)
         tr.appendChild(td2)
@@ -234,8 +240,8 @@ function processPresPay(presID, presDes, presDoctorID) {
         }
     })  .then(res=>res.json())
         .then(data=> {
-            console.log(data)
             alert(data["code"] == 200 ? "支付成功！" : "支付失败！")
+            processPresSearchAll()
         })
         .catch(err=>console.log(err))
 }

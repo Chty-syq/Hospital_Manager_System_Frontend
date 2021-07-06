@@ -77,8 +77,8 @@ function processPresFetch(presID, patientID) {
         }
     })  .then(res=>res.json())
         .then(data=>{
-            console.log(data)
             alert(data["code"] == 200 ? "取药成功！" : "取药失败！")
+            processPresRefresh()
         })
         .catch(err=>console.log(err))
 }
